@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
 
@@ -54,10 +56,20 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
   Future SignIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
-
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+    } catch (e) {
+      print(e);
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
