@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'authPage.dart';
 import 'loginwidget.dart';
 import 'signOut.dart';
 
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             else if (snapshot.hasData) {
               return SignOut();
             } else {
-              return const LoginWidget();
+              return AuthPage();
             }
           }),
     );
