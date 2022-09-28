@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'main.dart';
+import 'utils.dart';
 
 class SignUpWidget extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -106,6 +107,8 @@ class _LoginWidgetState extends State<SignUpWidget> {
           password: passwordController.text.trim());
     } catch (e) {
       print(e);
+
+      Utils.showSnackBar(e.toString());
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
