@@ -105,10 +105,11 @@ class _LoginWidgetState extends State<SignUpWidget> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
-    } catch (e) {
-      print(e);
+    }
+    on FirebaseAuthException catch (e) {
+      print(e.message);
 
-      Utils.showSnackBar(e.toString());
+      Utils.showSnackBar(e.message);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
