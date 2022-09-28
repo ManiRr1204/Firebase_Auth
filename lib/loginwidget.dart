@@ -38,11 +38,14 @@ class _LoginWidgetState extends State<LoginWidget> {
             controller: emailController,
             textInputAction: TextInputAction.next,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (email) => 
-            email != null && !EmailValidator.validate(email) 
-            ? "Enter a Valid Mail": null,
+            validator: (email) =>
+                email != null && !EmailValidator.validate(email)
+                    ? "Enter a Valid Mail"
+                    : null,
             decoration: const InputDecoration(
-                labelText: "E-mail", prefixIcon: Icon(Icons.email),),
+              labelText: "E-mail",
+              prefixIcon: Icon(Icons.email),
+            ),
           ),
           const SizedBox(
             height: 30,
@@ -52,12 +55,11 @@ class _LoginWidgetState extends State<LoginWidget> {
             textInputAction: TextInputAction.done,
             obscureText: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (value) => 
-            value != null && value.length < 6
-            ? "Enter min. 6 digits": null,
+            validator: (value) => value != null && value.length < 6
+                ? "Enter min. 6 digits"
+                : null,
             decoration: const InputDecoration(
                 labelText: "Password", prefixIcon: Icon(Icons.lock)),
-                
           ),
           const SizedBox(
             height: 40,
@@ -90,6 +92,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
   Future SignIn() async {
+    final isValid = formKey.currentState!.validate();
+    if(!isValid) return;
     showDialog(
       context: context,
       barrierDismissible: false,
